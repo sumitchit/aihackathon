@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Data Quality Assistant</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Prototype • Data Quality Copilot</p>
+          <h1>Detect, explain, and remediate data quality issues fast.</h1>
+          <p class="hero-copy">
+            Upload a CSV sample or use the built-in synthetic dataset to profile missing values,
+            duplicates, and inconsistent values, then generate a contextual remediation report.
+          </p>
+        </div>
+        <form id="analysis-form" class="card form-card">
+          <label for="source-name">Pipeline or dataset name</label>
+          <input id="source-name" name="source_name" type="text" value="synthetic_customer_feed" />
+
+          <label for="file-input">CSV file</label>
+          <input id="file-input" name="file" type="file" accept=".csv" />
+
+          <button type="submit">Analyze dataset</button>
+          <p class="hint">The prototype works with synthetic data out of the box and can be extended to database tables later.</p>
+        </form>
+      </header>
+
+      <main class="results-grid">
+        <section class="card summary-card">
+          <div class="summary-header">
+            <h2>Execution summary</h2>
+            <span id="quality-pill" class="pill">Waiting for input</span>
+          </div>
+          <div class="stats">
+            <div>
+              <span class="stat-label">Rows</span>
+              <strong id="row-count">0</strong>
+            </div>
+            <div>
+              <span class="stat-label">Columns</span>
+              <strong id="column-count">0</strong>
+            </div>
+            <div>
+              <span class="stat-label">Issues</span>
+              <strong id="issue-count">0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Detected issues</h2>
+          <div id="issues-list" class="issues-list"></div>
+        </section>
+
+        <section class="card">
+          <h2>Contextual report</h2>
+          <pre id="report-output" class="report-output">Upload a dataset to generate the report.</pre>
+        </section>
+
+        <section class="card preview-card">
+          <h2>Sample preview</h2>
+          <div class="table-wrapper">
+            <table id="preview-table">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
